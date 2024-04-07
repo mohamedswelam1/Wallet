@@ -11,11 +11,6 @@ class WalletRepository
     {
         return Wallet::create(['user_id' => $userId]);
     }
-
-    public function getWalletByUserId(int $userId)
-    {
-        return Wallet::where('user_id', $userId)->first();
-    }
     public function updateBalance(Wallet  $wallet,$balance )
     {
         return $wallet->update(['balance' => $balance]);

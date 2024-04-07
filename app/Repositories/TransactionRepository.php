@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Wallet;
 use App\Models\Transaction;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionRepository
 {
@@ -14,6 +15,7 @@ class TransactionRepository
 
     public function getTransactions()
     {
-        return Transaction::where('sender' , '=' , auth()->id());
+        $wallet= Wallet::where('user_id', Auth::id())->first();
+        return Transaction::where('wallet_id' , '=' ,$wallet->id)->get();
     }
 }

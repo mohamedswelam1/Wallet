@@ -43,8 +43,10 @@ class WalletController extends Controller
         try {
             $wallet = $this->walletService->transfer( $request->validated());
             return ApiResponse::success(['wallet' => new WalletResource($wallet)], 'Transfer successful.');
-        } catch (WalletNotFoundException | InsufficientBalanceException  $e) {
-            return ApiResponse::error('An error occurred during Funding', 401);
+        } catch (WalletNotFoundException   $e) {
+            return ApiResponse::error('wallet not found', 401);
+        } catch (  InsufficientBalanceException  $e) {
+            return ApiResponse::error(' insufficient balance', 401);
         } catch (\Exception $e) {
             // Catch any other unexpected exceptions
             return ApiResponse::error('Transfer failed.', 500);

@@ -14,7 +14,7 @@ class WalletService
     private $walletRepository ;
     private $transactionService ;
 
-    public function __construct(UserRepository $userRepository , WalletRepository $walletRepository , TransactionService $transactionService)
+    public function __construct( WalletRepository $walletRepository , TransactionService $transactionService)
     {
         $this->walletRepository = $walletRepository;
         $this->transactionService = $transactionService;
